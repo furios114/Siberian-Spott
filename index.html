@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Siberian Spott — фото и видео автомобилей в Кемерово</title>
-<meta name="description" content="Siberian Spott — фотограф автомобилей в Кемерово. Альбомы фото, детальная съёмка, видеотренды.">
+<meta name="description" content="Siberian Spott — фотограф автомобилей в Кемерово. Альбомы фото, коллажи, видеотренды.">
 <link rel="icon" href="logo.png">
 <meta property="og:title" content="Siberian Spott — фото и видео автомобилей">
 <meta property="og:description" content="Сниму ваш автомобиль по низкой цене. Кемерово.">
@@ -48,7 +48,6 @@
     padding: 0 32px;
   }
 
-  /* REVEAL-АНИМАЦИИ */
   .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -95,135 +94,202 @@
   header.scrolled .logo img { height: 36px; }
   .logo:hover img { filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.6)); }
 
-  .brand { text-align: right; line-height: 1.1; }
-  .brand-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 18px; font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--text); text-transform: uppercase;
-    transition: font-size 0.4s var(--ease);
-  }
-  .brand-name span { color: var(--accent); }
-  header.scrolled .brand-name { font-size: 16px; }
-  .brand-sub {
-    font-size: 10px; letter-spacing: 0.25em;
-    color: var(--muted); text-transform: uppercase;
-    margin-top: 2px;
-    transition: opacity 0.3s var(--ease);
-  }
-  header.scrolled .brand-sub { opacity: 0; }
-
-  main { padding-top: var(--hh); }
-
-  /* HERO */
-  .hero {
-    min-height: 90vh;
+  /* МЕНЮ */
+  .nav {
     display: flex;
     align-items: center;
-    position: relative;
-    overflow: hidden;
-    background-image: linear-gradient(180deg, rgba(7,8,13,0.5), rgba(7,8,13,0.9)), url('hero.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    gap: 28px;
+    list-style: none;
   }
-  .hero::before {
-    content: "";
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(7,8,13,0.7) 100%);
-    pointer-events: none;
-  }
-  .hero-content {
-    position: relative; z-index: 1;
-    text-align: center; width: 100%;
-    padding: 80px 32px;
-  }
-  .hero h1 {
-    font-size: clamp(40px, 6.5vw, 88px);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    line-height: 1.05;
-    margin-bottom: 24px;
-    color: #fff;
-    text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
-    animation: heroIn 1s var(--ease) both;
-  }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--accent);
-    text-shadow: 0 0 40px rgba(74, 158, 255, 0.6);
-  }
-  .hero p {
-    font-size: 18px;
-    color: #c8cbd4;
-    max-width: 640px;
-    margin: 0 auto 40px;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
-    animation: heroIn 1s 0.2s var(--ease) both;
-  }
-  .hero-actions {
-    display: flex; gap: 14px;
-    justify-content: center; flex-wrap: wrap;
-    animation: heroIn 1s 0.4s var(--ease) both;
-  }
-  @keyframes heroIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 32px; border-radius: 100px;
-    font-size: 15px; font-weight: 600;
+  .nav a {
+    color: var(--muted);
     text-decoration: none;
-    transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), color 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease);
-    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s var(--ease);
+    position: relative;
+    padding: 4px 0;
+  }
+  .nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.3s var(--ease);
+  }
+  .nav a:hover { color: var(--text); }
+  .nav a:hover::after { width: 100%; }
+
+  .burger {
+    display: none;
+    width: 40px; height: 40px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    position: relative;
     cursor: pointer;
+    transition: background 0.3s var(--ease);
   }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), #2c7ad6);
-    color: #fff;
-    box-shadow: 0 10px 40px rgba(74, 158, 255, 0.35);
+  .burger:hover { background: rgba(255, 255, 255, 0.08); }
+  .burger span {
+    position: absolute;
+    left: 11px; right: 11px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.4s var(--ease), opacity 0.3s var(--ease);
   }
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 50px rgba(74, 158, 255, 0.5);
-  }
-  .btn-ghost {
-    background: rgba(255, 255, 255, 0.06);
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-  .btn-ghost:hover {
-    border-color: var(--accent);
-    color: var(--accent-soft);
-    transform: translateY(-3px);
-  }
+  .burger span:nth-child(1) { top: 13px; }
+  .burger span:nth-child(2) { top: 19px; }
+  .burger span:nth-child(3) { top: 25px; }
+  .burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+main { padding-top: var(--hh); }
 
-  /* СЕКЦИИ */
-  section { padding: 100px 0; position: relative; }
+/* HERO */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(180deg, rgba(7,8,13,0.5), rgba(7,8,13,0.9)), url('hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(7,8,13,0.7) 100%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative; z-index: 1;
+  text-align: center; width: 100%;
+  padding: 80px 32px;
+}
+.hero h1 {
+  font-size: clamp(40px, 6.5vw, 88px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  color: #fff;
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+  animation: heroIn 1s var(--ease) both;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+  text-shadow: 0 0 40px rgba(74, 158, 255, 0.6);
+}
+.hero p {
+  font-size: 18px;
+  color: #c8cbd4;
+  max-width: 640px;
+  margin: 0 auto 40px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  animation: heroIn 1s 0.2s var(--ease) both;
+}
+.hero-actions {
+  display: flex; gap: 14px;
+  justify-content: center; flex-wrap: wrap;
+  animation: heroIn 1s 0.4s var(--ease) both;
+}
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  .section-head { text-align: center; margin-bottom: 60px; }
-  .section-label {
-    display: inline-block;
-    font-size: 12px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    text-transform: uppercase;
-  }
-  .section-title em { font-style: normal; color: var(--accent); }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 32px; border-radius: 100px;
+  font-size: 15px; font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), color 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #2c7ad6);
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(74, 158, 255, 0.35);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 50px rgba(74, 158, 255, 0.5);
+}
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent-soft);
+  transform: translateY(-3px);
+}
 
+section { padding: 100px 0; position: relative; }
+.section-head { text-align: center; margin-bottom: 60px; }
+.section-label {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.section-title em { font-style: normal; color: var(--accent); }
+
+/* ПРЕИМУЩЕСТВА */
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.feature {
+  padding: 32px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.feature:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-border);
+  box-shadow: 0 20px 50px rgba(74, 158, 255, 0.15);
+}
+.feature-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.5;
+}
+.feature-text::before {
+  content: "•";
+  display: block;
+  color: var(--accent);
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
   /* ГАЛЕРЕЯ */
   .gallery {
     display: grid;
@@ -298,13 +364,57 @@
     text-shadow: 0 0 30px rgba(74, 158, 255, 0.8);
   }
 
+  /* ДОП УСЛУГА */
+  .extra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .extra-text h3 {
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .extra-text h3 em { font-style: normal; color: var(--accent); }
+  .extra-text p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .extra-photo {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4/3;
+    transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  }
+  .extra-photo img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 12px;
+  }
+  .extra-photo:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-border);
+    box-shadow: 0 20px 60px rgba(74, 158, 255, 0.2);
+  }
+
   /* КОНТАКТЫ */
   .contacts {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     max-width: 1000px;
-    margin: 0 auto 40px;
+    margin: 0 auto;
   }
   .contact-item {
     display: flex;
@@ -351,8 +461,29 @@
 
   /* АДАПТИВ */
   @media (max-width: 900px) {
+    .nav { display: none; }
+    .burger { display: block; }
+
+    .nav.open {
+      display: flex;
+      position: fixed;
+      top: var(--hh); left: 16px; right: 16px;
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px;
+      background: rgba(18, 20, 30, 0.98);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .nav.open a { padding: 12px 16px; text-align: center; }
+
+    .features { grid-template-columns: repeat(2, 1fr); }
     .gallery { grid-template-columns: repeat(2, 1fr); }
     .prices { grid-template-columns: 1fr; }
+    .extra { grid-template-columns: 1fr; gap: 28px; }
     .contacts { grid-template-columns: 1fr; }
     .container, .header-inner { padding: 0 24px; }
   }
@@ -364,10 +495,6 @@
     .logo img { height: 36px; }
     header.scrolled .logo img { height: 30px; }
 
-    .brand-name { font-size: 14px; letter-spacing: 0.12em; }
-    header.scrolled .brand-name { font-size: 13px; }
-    .brand-sub { font-size: 9px; }
-
     .hero { background-attachment: scroll; min-height: 80vh; }
     .hero h1 { font-size: clamp(32px, 10vw, 48px); }
     .hero p { font-size: 15px; }
@@ -376,6 +503,7 @@
 
     section { padding: 70px 0; }
     .section-head { margin-bottom: 40px; }
+    .features { grid-template-columns: 1fr; }
     .gallery { grid-template-columns: 1fr; }
     .price-item { padding: 22px 24px; }
     .price-value { font-size: 19px; }
@@ -389,10 +517,18 @@
     <a href="#" class="logo">
       <img src="logo.png" alt="Siberian Spott">
     </a>
-    <div class="brand">
-      <div class="brand-name">SIBERIAN <span>SPOTT</span></div>
-      <div class="brand-sub">Кемерово</div>
-    </div>
+    <nav>
+      <ul class="nav" id="nav">
+        <li><a href="#examples">Примеры</a></li>
+        <li><a href="#collages">Коллажи</a></li>
+        <li><a href="#prices">Цены</a></li>
+        <li><a href="#extra">Доп услуга</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -401,7 +537,7 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Сниму ваш автомобиль<br><em>по низкой цене</em></h1>
-      <p>Профессиональная фото и видеосъёмка автомобилей в Кемерово. Альбомы, детальные кадры, видеотренды.</p>
+      <p>Профессиональная фото и видеосъёмка автомобилей в Кемерово. Альбомы, коллажи, детальные кадры, видеотренды.</p>
       <div class="hero-actions">
         <a href="#examples" class="btn btn-primary">Смотреть примеры</a>
         <a href="#contacts" class="btn btn-ghost">Связаться</a>
@@ -409,50 +545,100 @@
     </div>
   </section>
 
-  <section id="examples">
+  <section id="features" style="padding-top: 60px;">
     <div class="container">
-      <div class="section-head reveal">
-        <div class="section-label">Примеры</div>
-        <h2 class="section-title">Наши <em>работы</em></h2>
-      </div>
-      <div class="gallery">
-        <div class="gallery-item reveal"><img src="photo1.jpg" alt="Пример 1"></div>
-        <div class="gallery-item reveal reveal-delay-1"><img src="photo2.jpg" alt="Пример 2"></div>
-        <div class="gallery-item reveal reveal-delay-2"><img src="photo3.jpg" alt="Пример 3"></div>
-        <div class="gallery-item reveal"><img src="photo4.jpg" alt="Пример 4"></div>
-        <div class="gallery-item reveal reveal-delay-1"><img src="photo5.jpg" alt="Пример 5"></div>
-        <div class="gallery-item reveal reveal-delay-2"><img src="photo6.jpg" alt="Пример 6"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="prices">
-    <div class="container">
-      <div class="section-head reveal">
-        <div class="section-label">Цены</div>
-        <h2 class="section-title">Прайс</h2>
-      </div>
-      <div class="prices">
-        <div class="price-item reveal">
-          <div class="price-name">Альбом фото</div>
-          <div class="price-value">700 ₽</div>
+      <div class="features">
+        <div class="feature reveal">
+          <div class="feature-text">Профессиональная съёмка</div>
         </div>
-        <div class="price-item reveal reveal-delay-1">
-          <div class="price-name">Детальные фото для продажи авто</div>
-          <div class="price-value">1000 ₽</div>
+        <div class="feature reveal reveal-delay-1">
+          <div class="feature-text">Сочные кадры</div>
         </div>
-        <div class="price-item reveal">
-          <div class="price-name">Покадровые видео / видео-тренды</div>
-          <div class="price-value">800 ₽</div>
+        <div class="feature reveal reveal-delay-2">
+          <div class="feature-text">Красивые локации</div>
         </div>
-        <div class="price-item reveal reveal-delay-1">
-          <div class="price-name">Фото + видео</div>
-          <div class="price-value">1200 ₽</div>
+        <div class="feature reveal reveal-delay-3">
+          <div class="feature-text">Множество довольных заказчиков</div>
         </div>
       </div>
     </div>
   </section>
+<section id="examples">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Примеры</div>
+      <h2 class="section-title">Наши <em>работы</em></h2>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item reveal"><img src="photo1.jpg" alt="Пример 1"></div>
+      <div class="gallery-item reveal reveal-delay-1"><img src="photo2.jpg" alt="Пример 2"></div>
+      <div class="gallery-item reveal reveal-delay-2"><img src="photo3.jpg" alt="Пример 3"></div>
+      <div class="gallery-item reveal"><img src="photo4.jpg" alt="Пример 4"></div>
+      <div class="gallery-item reveal reveal-delay-1"><img src="photo5.jpg" alt="Пример 5"></div>
+      <div class="gallery-item reveal reveal-delay-2"><img src="photo6.jpg" alt="Пример 6"></div>
+    </div>
+  </div>
+</section>
 
+<section id="collages">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Коллажи</div>
+      <h2 class="section-title">Наши <em>коллажи</em></h2>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item reveal"><img src="collage1.jpg" alt="Коллаж 1"></div>
+      <div class="gallery-item reveal reveal-delay-1"><img src="collage2.jpg" alt="Коллаж 2"></div>
+      <div class="gallery-item reveal reveal-delay-2"><img src="collage3.jpg" alt="Коллаж 3"></div>
+      <div class="gallery-item reveal"><img src="collage4.jpg" alt="Коллаж 4"></div>
+      <div class="gallery-item reveal reveal-delay-1"><img src="collage5.jpg" alt="Коллаж 5"></div>
+    </div>
+  </div>
+</section>
+<section id="prices">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Цены</div>
+      <h2 class="section-title">Прайс</h2>
+    </div>
+    <div class="prices">
+      <div class="price-item reveal">
+        <div class="price-name">Альбом фото</div>
+        <div class="price-value">700 ₽</div>
+      </div>
+      <div class="price-item reveal reveal-delay-1">
+        <div class="price-name">Детальные фото для продажи авто</div>
+        <div class="price-value">1000 ₽</div>
+      </div>
+      <div class="price-item reveal">
+        <div class="price-name">Покадровые видео / видео-тренды</div>
+        <div class="price-value">800 ₽</div>
+      </div>
+      <div class="price-item reveal reveal-delay-1">
+        <div class="price-name">Фото + видео</div>
+        <div class="price-value">1200 ₽</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="extra">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Доп услуга</div>
+      <h2 class="section-title">Кадры <em>с номерами</em></h2>
+    </div>
+    <div class="extra">
+      <div class="extra-text reveal">
+        <h3>Кадры с <em>такими номерами</em></h3>
+        <p>По вашему желанию сделаем кадры с такими номерами. Специальная съёмка для продажи или личного архива.</p>
+      </div>
+      <div class="extra-photo reveal reveal-delay-1">
+        <img src="numbers1.jpg" alt="Кадры с номерами">
+      </div>
+    </div>
+  </div>
+</section>
   <section id="contacts">
     <div class="container">
       <div class="section-head reveal">
@@ -503,7 +689,21 @@
     header.classList.toggle('scrolled', window.scrollY > 30);
   }, { passive: true });
 
-  // Reveal-анимации
+  // Бургер
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('open');
+      nav.classList.remove('open');
+    });
+  });
+
+  // Reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
