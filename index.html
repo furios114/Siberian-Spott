@@ -7,7 +7,7 @@
 <meta name="description" content="Siberian Spott — фотограф автомобилей в Кемерово. Альбомы фото, детальная съёмка, видеотренды.">
 <link rel="icon" href="logo.png">
 <meta property="og:title" content="Siberian Spott — фото и видео автомобилей">
-<meta property="og:description" content="Фотосъёмка автомобилей в Кемерово. Альбомы, детали, видео.">
+<meta property="og:description" content="Сниму ваш автомобиль по низкой цене. Кемерово.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +48,18 @@
     padding: 0 32px;
   }
 
-  /* ШАПКА — ПРИКЛЕЕНА */
+  /* REVEAL-АНИМАЦИИ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ШАПКА */
   header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -76,53 +87,32 @@
     align-items: center;
     gap: 20px;
   }
-
-  /* Лого слева */
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    flex-shrink: 0;
-  }
+  .logo { display: inline-flex; align-items: center; text-decoration: none; flex-shrink: 0; }
   .logo img {
-    height: 44px;
-    width: auto;
-    display: block;
+    height: 44px; width: auto; display: block;
     transition: height 0.4s var(--ease), filter 0.4s var(--ease);
   }
   header.scrolled .logo img { height: 36px; }
-  .logo:hover img {
-    filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.6));
-  }
+  .logo:hover img { filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.6)); }
 
-  /* Название справа */
-  .brand {
-    text-align: right;
-    line-height: 1.1;
-  }
+  .brand { text-align: right; line-height: 1.1; }
   .brand-name {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 18px; font-weight: 700;
     letter-spacing: 0.15em;
-    color: var(--text);
-    text-transform: uppercase;
+    color: var(--text); text-transform: uppercase;
     transition: font-size 0.4s var(--ease);
   }
   .brand-name span { color: var(--accent); }
   header.scrolled .brand-name { font-size: 16px; }
-
   .brand-sub {
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    color: var(--muted);
-    text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.25em;
+    color: var(--muted); text-transform: uppercase;
     margin-top: 2px;
     transition: opacity 0.3s var(--ease);
   }
   header.scrolled .brand-sub { opacity: 0; }
 
-  /* ОТСТУП ПОД ШАПКУ */
   main { padding-top: var(--hh); }
 
   /* HERO */
@@ -139,27 +129,24 @@
   }
   .hero::before {
     content: "";
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(7,8,13,0.7) 100%);
     pointer-events: none;
   }
   .hero-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    width: 100%;
+    position: relative; z-index: 1;
+    text-align: center; width: 100%;
     padding: 80px 32px;
   }
   .hero h1 {
-    font-size: clamp(44px, 7vw, 96px);
+    font-size: clamp(40px, 6.5vw, 88px);
     font-weight: 900;
     letter-spacing: -0.04em;
-    line-height: 1;
-    text-transform: uppercase;
+    line-height: 1.05;
     margin-bottom: 24px;
     color: #fff;
     text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+    animation: heroIn 1s var(--ease) both;
   }
   .hero h1 em {
     font-style: normal;
@@ -172,22 +159,22 @@
     max-width: 640px;
     margin: 0 auto 40px;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+    animation: heroIn 1s 0.2s var(--ease) both;
   }
   .hero-actions {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: flex; gap: 14px;
+    justify-content: center; flex-wrap: wrap;
+    animation: heroIn 1s 0.4s var(--ease) both;
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 32px;
-    border-radius: 100px;
-    font-size: 15px;
-    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 32px; border-radius: 100px;
+    font-size: 15px; font-weight: 600;
     text-decoration: none;
     transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), color 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease);
     border: 1px solid transparent;
@@ -216,15 +203,9 @@
   }
 
   /* СЕКЦИИ */
-  section {
-    padding: 100px 0;
-    position: relative;
-  }
+  section { padding: 100px 0; position: relative; }
 
-  .section-head {
-    text-align: center;
-    margin-bottom: 60px;
-  }
+  .section-head { text-align: center; margin-bottom: 60px; }
   .section-label {
     display: inline-block;
     font-size: 12px;
@@ -241,12 +222,9 @@
     line-height: 1.1;
     text-transform: uppercase;
   }
-  .section-title em {
-    font-style: normal;
-    color: var(--accent);
-  }
+  .section-title em { font-style: normal; color: var(--accent); }
 
-  /* ПРИМЕРЫ — ФОТО ВИДНЫ ПОЛНОСТЬЮ */
+  /* ГАЛЕРЕЯ */
   .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -261,41 +239,121 @@
     align-items: center;
     justify-content: center;
     aspect-ratio: 4/3;
-    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
     cursor: pointer;
-    position: relative;
   }
   .gallery-item img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: contain;
     display: block;
-    transition: transform 0.6s var(--ease);
     padding: 12px;
+    transition: transform 0.6s var(--ease);
   }
   .gallery-item:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
     border-color: var(--accent-border);
-    box-shadow: 0 20px 50px rgba(74, 158, 255, 0.15);
+    box-shadow: 0 20px 60px rgba(74, 158, 255, 0.2);
   }
-  .gallery-item:hover img {
-    transform: scale(1.03);
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  /* ЦЕНЫ */
+  .prices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 28px 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), background 0.4s var(--ease);
+  }
+  .price-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-border);
+    background: #171a26;
+  }
+  .price-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .price-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+    transition: text-shadow 0.4s var(--ease);
+  }
+  .price-item:hover .price-value {
+    text-shadow: 0 0 30px rgba(74, 158, 255, 0.8);
   }
 
-  /* ЗАГЛУШКИ (пока не заполнено) */
-  .placeholder {
-    padding: 80px 32px;
+  /* КОНТАКТЫ */
+  .contacts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    background: var(--bg-soft);
-    border: 1px dashed var(--border);
-    border-radius: 20px;
+    padding: 32px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), background 0.4s var(--ease);
+  }
+  .contact-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-border);
+    background: #171a26;
+  }
+  .contact-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
     color: var(--muted);
-    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .contact-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    word-break: break-word;
+  }
+  .contact-item:hover .contact-value { color: var(--accent-soft); }
+
+  /* ПОДВАЛ */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--dim);
+    font-size: 14px;
   }
 
   /* АДАПТИВ */
   @media (max-width: 900px) {
     .gallery { grid-template-columns: repeat(2, 1fr); }
+    .prices { grid-template-columns: 1fr; }
+    .contacts { grid-template-columns: 1fr; }
     .container, .header-inner { padding: 0 24px; }
   }
 
@@ -311,14 +369,16 @@
     .brand-sub { font-size: 9px; }
 
     .hero { background-attachment: scroll; min-height: 80vh; }
-    .hero h1 { font-size: clamp(36px, 11vw, 56px); }
-    .hero p { font-size: 16px; }
+    .hero h1 { font-size: clamp(32px, 10vw, 48px); }
+    .hero p { font-size: 15px; }
     .hero-actions { flex-direction: column; width: 100%; }
     .hero-actions .btn { width: 100%; justify-content: center; }
 
     section { padding: 70px 0; }
     .section-head { margin-bottom: 40px; }
     .gallery { grid-template-columns: 1fr; }
+    .price-item { padding: 22px 24px; }
+    .price-value { font-size: 19px; }
   }
 </style>
 </head>
@@ -340,8 +400,8 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>Фото и видео<br><em>автомобилей</em></h1>
-      <p>Профессиональная съёмка автомобилей в Кемерово. Альбомы, детальные фото, видеотренды.</p>
+      <h1>Сниму ваш автомобиль<br><em>по низкой цене</em></h1>
+      <p>Профессиональная фото и видеосъёмка автомобилей в Кемерово. Альбомы, детальные кадры, видеотренды.</p>
       <div class="hero-actions">
         <a href="#examples" class="btn btn-primary">Смотреть примеры</a>
         <a href="#contacts" class="btn btn-ghost">Связаться</a>
@@ -351,50 +411,110 @@
 
   <section id="examples">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <div class="section-label">Примеры</div>
         <h2 class="section-title">Наши <em>работы</em></h2>
       </div>
       <div class="gallery">
-        <div class="gallery-item"><img src="photo1.jpg" alt="Пример 1"></div>
-        <div class="gallery-item"><img src="photo2.jpg" alt="Пример 2"></div>
-        <div class="gallery-item"><img src="photo3.jpg" alt="Пример 3"></div>
-        <div class="gallery-item"><img src="photo4.jpg" alt="Пример 4"></div>
-        <div class="gallery-item"><img src="photo5.jpg" alt="Пример 5"></div>
-        <div class="gallery-item"><img src="photo6.jpg" alt="Пример 6"></div>
+        <div class="gallery-item reveal"><img src="photo1.jpg" alt="Пример 1"></div>
+        <div class="gallery-item reveal reveal-delay-1"><img src="photo2.jpg" alt="Пример 2"></div>
+        <div class="gallery-item reveal reveal-delay-2"><img src="photo3.jpg" alt="Пример 3"></div>
+        <div class="gallery-item reveal"><img src="photo4.jpg" alt="Пример 4"></div>
+        <div class="gallery-item reveal reveal-delay-1"><img src="photo5.jpg" alt="Пример 5"></div>
+        <div class="gallery-item reveal reveal-delay-2"><img src="photo6.jpg" alt="Пример 6"></div>
       </div>
     </div>
   </section>
 
   <section id="prices">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <div class="section-label">Цены</div>
         <h2 class="section-title">Прайс</h2>
       </div>
-      <div class="placeholder">Раздел цен — заполним в следующей части</div>
+      <div class="prices">
+        <div class="price-item reveal">
+          <div class="price-name">Альбом фото</div>
+          <div class="price-value">700 ₽</div>
+        </div>
+        <div class="price-item reveal reveal-delay-1">
+          <div class="price-name">Детальные фото для продажи авто</div>
+          <div class="price-value">1000 ₽</div>
+        </div>
+        <div class="price-item reveal">
+          <div class="price-name">Покадровые видео / видео-тренды</div>
+          <div class="price-value">800 ₽</div>
+        </div>
+        <div class="price-item reveal reveal-delay-1">
+          <div class="price-name">Фото + видео</div>
+          <div class="price-value">1200 ₽</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="contacts">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <div class="section-label">Контакты</div>
         <h2 class="section-title">Связаться</h2>
       </div>
-      <div class="placeholder">Раздел контактов — заполним в следующей части</div>
+      <div class="contacts">
+        <a href="tel:+79960393494" class="contact-item reveal">
+          <div class="contact-label">Телефон</div>
+          <div class="contact-value">+7 (996) 039-34-94</div>
+        </a>
+        <a href="https://t.me/sbk_spott" target="_blank" rel="noopener" class="contact-item reveal reveal-delay-1">
+          <div class="contact-label">Telegram</div>
+          <div class="contact-value">@sbk_spott</div>
+        </a>
+        <a href="https://t.me/sbkspott" target="_blank" rel="noopener" class="contact-item reveal reveal-delay-2">
+          <div class="contact-label">Канал</div>
+          <div class="contact-value">@sbkspott</div>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="contact-item reveal">
+          <div class="contact-label">Instagram</div>
+          <div class="contact-value">Сибирский спотт</div>
+        </a>
+        <a href="https://tiktok.com/@sbkspott" target="_blank" rel="noopener" class="contact-item reveal reveal-delay-1">
+          <div class="contact-label">TikTok</div>
+          <div class="contact-value">@sbkspott</div>
+        </a>
+        <div class="contact-item reveal reveal-delay-2" style="cursor:default;">
+          <div class="contact-label">Город</div>
+          <div class="contact-value">Кемерово</div>
+        </div>
+      </div>
     </div>
   </section>
 
 </main>
 
+<footer>
+  <div class="container">
+    © 2026 Siberian Spott. Кемерово.
+  </div>
+</footer>
+
 <script>
-  // Шапка сжимается при скролле
+  // Шапка при скролле
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 30);
   }, { passive: true });
+
+  // Reveal-анимации
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
-  </html>
+</html>
