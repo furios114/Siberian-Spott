@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siberian Spott — фото и видео автомобилей в Кемерово</title>
+<meta name="description" content="Siberian Spott — фотограф автомобилей в Кемерово. Альбомы фото, детальная съёмка, видеотренды.">
+<link rel="icon" href="logo.png">
+<meta property="og:title" content="Siberian Spott — фото и видео автомобилей">
+<meta property="og:description" content="Фотосъёмка автомобилей в Кемерово. Альбомы, детали, видео.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #07080d;
+    --bg-soft: #0d0f17;
+    --card: #12141e;
+    --border: #1c1f2b;
+    --text: #f2f4f8;
+    --muted: #8a8f9c;
+    --dim: #555866;
+    --accent: #4a9eff;
+    --accent-soft: #7ab8ff;
+    --accent-dim: rgba(74, 158, 255, 0.12);
+    --accent-border: rgba(74, 158, 255, 0.3);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --hh: 76px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ШАПКА — ПРИКЛЕЕНА */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--hh);
+    z-index: 1000;
+    background: rgba(7, 8, 13, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    transition: height 0.4s var(--ease), background 0.4s var(--ease);
+  }
+  header.scrolled {
+    height: 64px;
+    background: rgba(7, 8, 13, 0.98);
+  }
+  .header-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Лого слева */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo img {
+    height: 44px;
+    width: auto;
+    display: block;
+    transition: height 0.4s var(--ease), filter 0.4s var(--ease);
+  }
+  header.scrolled .logo img { height: 36px; }
+  .logo:hover img {
+    filter: drop-shadow(0 0 20px rgba(74, 158, 255, 0.6));
+  }
+
+  /* Название справа */
+  .brand {
+    text-align: right;
+    line-height: 1.1;
+  }
+  .brand-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text);
+    text-transform: uppercase;
+    transition: font-size 0.4s var(--ease);
+  }
+  .brand-name span { color: var(--accent); }
+  header.scrolled .brand-name { font-size: 16px; }
+
+  .brand-sub {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 2px;
+    transition: opacity 0.3s var(--ease);
+  }
+  header.scrolled .brand-sub { opacity: 0; }
+
+  /* ОТСТУП ПОД ШАПКУ */
+  main { padding-top: var(--hh); }
+
+  /* HERO */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(180deg, rgba(7,8,13,0.5), rgba(7,8,13,0.9)), url('hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(7,8,13,0.7) 100%);
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    padding: 80px 32px;
+  }
+  .hero h1 {
+    font-size: clamp(44px, 7vw, 96px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    color: #fff;
+    text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+    text-shadow: 0 0 40px rgba(74, 158, 255, 0.6);
+  }
+  .hero p {
+    font-size: 18px;
+    color: #c8cbd4;
+    max-width: 640px;
+    margin: 0 auto 40px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), color 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease);
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #2c7ad6);
+    color: #fff;
+    box-shadow: 0 10px 40px rgba(74, 158, 255, 0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 50px rgba(74, 158, 255, 0.5);
+  }
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent-soft);
+    transform: translateY(-3px);
+  }
+
+  /* СЕКЦИИ */
+  section {
+    padding: 100px 0;
+    position: relative;
+  }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .section-label {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .section-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  /* ПРИМЕРЫ — ФОТО ВИДНЫ ПОЛНОСТЬЮ */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .gallery-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4/3;
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    cursor: pointer;
+    position: relative;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.6s var(--ease);
+    padding: 12px;
+  }
+  .gallery-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-border);
+    box-shadow: 0 20px 50px rgba(74, 158, 255, 0.15);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.03);
+  }
+
+  /* ЗАГЛУШКИ (пока не заполнено) */
+  .placeholder {
+    padding: 80px 32px;
+    text-align: center;
+    background: var(--bg-soft);
+    border: 1px dashed var(--border);
+    border-radius: 20px;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  /* АДАПТИВ */
+  @media (max-width: 900px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .container, .header-inner { padding: 0 24px; }
+  }
+
+  @media (max-width: 640px) {
+    .container, .header-inner { padding: 0 20px; }
+    :root { --hh: 66px; }
+
+    .logo img { height: 36px; }
+    header.scrolled .logo img { height: 30px; }
+
+    .brand-name { font-size: 14px; letter-spacing: 0.12em; }
+    header.scrolled .brand-name { font-size: 13px; }
+    .brand-sub { font-size: 9px; }
+
+    .hero { background-attachment: scroll; min-height: 80vh; }
+    .hero h1 { font-size: clamp(36px, 11vw, 56px); }
+    .hero p { font-size: 16px; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+
+    section { padding: 70px 0; }
+    .section-head { margin-bottom: 40px; }
+    .gallery { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img src="logo.png" alt="Siberian Spott">
+    </a>
+    <div class="brand">
+      <div class="brand-name">SIBERIAN <span>SPOTT</span></div>
+      <div class="brand-sub">Кемерово</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Фото и видео<br><em>автомобилей</em></h1>
+      <p>Профессиональная съёмка автомобилей в Кемерово. Альбомы, детальные фото, видеотренды.</p>
+      <div class="hero-actions">
+        <a href="#examples" class="btn btn-primary">Смотреть примеры</a>
+        <a href="#contacts" class="btn btn-ghost">Связаться</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="examples">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-label">Примеры</div>
+        <h2 class="section-title">Наши <em>работы</em></h2>
+      </div>
+      <div class="gallery">
+        <div class="gallery-item"><img src="photo1.jpg" alt="Пример 1"></div>
+        <div class="gallery-item"><img src="photo2.jpg" alt="Пример 2"></div>
+        <div class="gallery-item"><img src="photo3.jpg" alt="Пример 3"></div>
+        <div class="gallery-item"><img src="photo4.jpg" alt="Пример 4"></div>
+        <div class="gallery-item"><img src="photo5.jpg" alt="Пример 5"></div>
+        <div class="gallery-item"><img src="photo6.jpg" alt="Пример 6"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prices">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-label">Цены</div>
+        <h2 class="section-title">Прайс</h2>
+      </div>
+      <div class="placeholder">Раздел цен — заполним в следующей части</div>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-label">Контакты</div>
+        <h2 class="section-title">Связаться</h2>
+      </div>
+      <div class="placeholder">Раздел контактов — заполним в следующей части</div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Шапка сжимается при скролле
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+</script>
+
+</body>
+  </html>
